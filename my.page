@@ -1,0 +1,315 @@
+permalink: /404.html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Youngrok Yoon - Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Pretendard', sans-serif;
+  background: #ffffff; /* 🔥 완전 흰색 (애플 느낌) */
+  color: #111;
+}
+
+section { padding: 110px 12%; }
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* ===== LANGUAGE ===== */
+.lang-toggle {
+  position: absolute;
+  top: 30px;
+  right: 12%;
+}
+
+.lang-btn {
+  border: 1px solid #000;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: transparent;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.lang-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* ===== HERO ===== */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  background:
+  linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.9)),
+  url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1400&q=80')
+  center/cover no-repeat;
+}
+
+/* 프로필 이미지 */
+.hero img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+  object-fit: cover;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08),
+    0 20px 60px rgba(0,0,0,0.08);
+}
+
+.hero h1 {
+  font-size: 4.5rem;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #444;
+  max-width: 500px;
+}
+
+/* ===== ABOUT ===== */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.about-text {
+  color: #555;
+  line-height: 1.9;
+}
+
+/* ===== SKILLS ===== */
+.skills {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.skill {
+  border: 1px solid #ddd;
+  padding: 10px 18px;
+  border-radius: 30px;
+  background: #fff;
+  transition: .3s;
+}
+
+.skill:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* ===== PROJECT ===== */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 30px;
+}
+
+.card {
+  padding: 40px;
+  border-radius: 24px;
+  background: #fff;
+
+  box-shadow:
+    0 4px 20px rgba(0,0,0,0.04),
+    0 10px 40px rgba(0,0,0,0.06);
+
+  transition: .4s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.08),
+    0 20px 80px rgba(0,0,0,0.08);
+}
+
+.card h3 { margin-bottom: 10px; }
+.card p { color: #666; }
+
+/* ===== CONTACT ===== */
+.contact {
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 14px 32px;
+  border-radius: 40px;
+  border: 1px solid #000;
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .about { grid-template-columns:1fr; }
+  .hero h1 { font-size:2.6rem; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 언어 버튼 -->
+<div class="lang-toggle">
+  <button id="langBtn" class="lang-btn" onclick="toggleLanguage()">EN</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- 🔥 여기 사진 넣어 -->
+  <img src="여기에_너_사진_URL">
+
+  <h1>Youngrok Yoon</h1>
+
+  <p data-i18n="heroDesc">노력하는 사람.</p>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div>
+    <h2 data-i18n="aboutTitle">About Me</h2>
+  </div>
+
+  <div class="about-text">
+    <span data-i18n="aboutDesc">
+      단순히 만드는 것에 그치지 않고, 왜 이 구조가 필요한지 고민합니다.
+      사용자 흐름과 행동을 기반으로 더 나은 경험을 설계하며,
+      작지만 체감되는 차이를 만드는 것을 목표로 합니다.
+    </span>
+
+    <div class="skills">
+      <div class="skill">HTML/CSS</div>
+      <div class="skill">Python</div>
+      <div class="skill">WordPress</div>
+      <div class="skill">C</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section>
+  <h2 style="margin-bottom:40px" data-i18n="projectTitle">Projects & Experience</h2>
+
+  <div class="projects">
+
+    <div class="card">
+      <h3 data-i18n="certTitle">Certifications</h3>
+      <p data-i18n="certDesc">바리스타 2급 / 지게차운전기능사</p>
+    </div>
+
+    <div class="card">
+      <h3 data-i18n="workTitle">Work Experience</h3>
+      <p data-i18n="workDesc">메가커피 / 아웃백</p>
+    </div>
+
+    <div class="card">
+      <h3 data-i18n="volTitle">Volunteer</h3>
+      <p data-i18n="volDesc">84 hours</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <h2 data-i18n="contactTitle">Contact</h2>
+  <p style="color:#666">yooungrok@icloud.com</p>
+  <a href="#" class="btn" data-i18n="contactBtn">Get In Touch</a>
+</section>
+
+<footer data-i18n="footerText">
+  © 2026 Youngrok Yoon
+</footer>
+
+<script>
+const translations = {
+  ko:{
+    heroDesc:"노력하는 사람.",
+    aboutTitle:"About Me",
+    aboutDesc:"단순히 만드는 것에 그치지 않고 구조를 고민하며 더 나은 경험을 만듭니다.",
+    projectTitle:"Projects & Experience",
+    certTitle:"자격증",
+    certDesc:"바리스타 2급 / 지게차운전기능사",
+    workTitle:"근무 경험",
+    workDesc:"메가커피 / 아웃백",
+    volTitle:"봉사활동",
+    volDesc:"총 84시간",
+    contactTitle:"Contact",
+    contactBtn:"연락하기",
+    footerText:"© 2026 Youngrok Yoon"
+  },
+  en:{
+    heroDesc:"A person who constantly improves.",
+    aboutTitle:"About Me",
+    aboutDesc:"I focus on structure and improving user experience.",
+    projectTitle:"Projects & Experience",
+    certTitle:"Certifications",
+    certDesc:"Barista Level 2 / Forklift",
+    workTitle:"Work Experience",
+    workDesc:"Mega Coffee / Outback",
+    volTitle:"Volunteer",
+    volDesc:"84 hours",
+    contactTitle:"Contact",
+    contactBtn:"Back to Top",
+    footerText:"© 2026 Youngrok Yoon"
+  }
+};
+
+let currentLang = navigator.language.startsWith('ko') ? 'ko' : 'en';
+
+function updateText(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    el.textContent = translations[currentLang][key];
+  });
+
+  document.getElementById('langBtn').textContent =
+    currentLang === 'ko' ? 'EN' : 'KR';
+}
+
+function toggleLanguage(){
+  currentLang = currentLang === 'ko' ? 'en' : 'ko';
+  updateText();
+}
+
+window.onload = updateText;
+</script>
+
+</body>
+</html>
