@@ -3,312 +3,786 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Youngrok Yoon - Portfolio</title>
+<title>Youngrok Yoon — Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
 
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #0a0a0a;
+  --white: #fafaf8;
+  --gray: #888;
+  --light: #f2f0eb;
+  --accent: #c8a96e;
+  --border: rgba(0,0,0,0.1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Pretendard', sans-serif;
-  background: #ffffff; /* 🔥 완전 흰색 (애플 느낌) */
-  color: #111;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
 }
 
-section { padding: 110px 12%; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--white); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
-h1, h2 {
-  font-family: 'Playfair Display', serif;
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 6%;
+  background: rgba(250,250,248,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
 }
-
-/* ===== LANGUAGE ===== */
-.lang-toggle {
-  position: absolute;
-  top: 30px;
-  right: 12%;
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  letter-spacing: -0.5px;
 }
-
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--gray);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--black); }
+.nav-right { display: flex; align-items: center; gap: 16px; }
 .lang-btn {
-  border: 1px solid #000;
-  padding: 8px 16px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  border: 1px solid var(--border);
+  padding: 7px 14px;
   border-radius: 20px;
   background: transparent;
   cursor: pointer;
-  transition: .3s;
+  color: var(--black);
+  transition: all 0.3s;
 }
+.lang-btn:hover { background: var(--black); color: var(--white); }
 
-.lang-btn:hover {
-  background: #000;
-  color: #fff;
-}
-
-/* ===== HERO ===== */
+/* HERO */
 .hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-
-  background:
-  linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.9)),
-  url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1400&q=80')
-  center/cover no-repeat;
-}
-
-/* 프로필 이미지 */
-.hero img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  margin-bottom: 30px;
-  object-fit: cover;
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.08),
-    0 20px 60px rgba(0,0,0,0.08);
-}
-
-.hero h1 {
-  font-size: 4.5rem;
-  font-weight: 700;
-  letter-spacing: -1.5px;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  color: #444;
-  max-width: 500px;
-}
-
-/* ===== ABOUT ===== */
-.about {
+  min-height: 100vh;
+  padding: 0 6%;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: center;
   gap: 60px;
+  padding-top: 100px;
 }
-
-.about-text {
-  color: #555;
-  line-height: 1.9;
-}
-
-/* ===== SKILLS ===== */
-.skills {
+.hero-text { max-width: 560px; }
+.hero-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 24px;
   display: flex;
+  align-items: center;
   gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 25px;
 }
-
-.skill {
-  border: 1px solid #ddd;
-  padding: 10px 18px;
-  border-radius: 30px;
-  background: #fff;
-  transition: .3s;
+.hero-eyebrow::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--accent);
 }
-
-.skill:hover {
-  background: #000;
-  color: #fff;
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 28px;
 }
-
-/* ===== PROJECT ===== */
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-  gap: 30px;
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-desc {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.8;
+  max-width: 440px;
+  margin-bottom: 40px;
 }
-
-.card {
-  padding: 40px;
-  border-radius: 24px;
-  background: #fff;
-
-  box-shadow:
-    0 4px 20px rgba(0,0,0,0.04),
-    0 10px 40px rgba(0,0,0,0.06);
-
-  transition: .4s;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    0 10px 40px rgba(0,0,0,0.08),
-    0 20px 80px rgba(0,0,0,0.08);
-}
-
-.card h3 { margin-bottom: 10px; }
-.card p { color: #666; }
-
-/* ===== CONTACT ===== */
-.contact {
-  text-align: center;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 14px 32px;
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+  padding: 14px 28px;
+  background: var(--black);
+  color: var(--white);
   border-radius: 40px;
-  border: 1px solid #000;
   text-decoration: none;
-  color: #111;
   font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  border: 1.5px solid var(--black);
 }
-
-.btn:hover {
-  background: #000;
-  color: #fff;
+.btn-primary:hover { background: transparent; color: var(--black); }
+.btn-ghost {
+  padding: 14px 28px;
+  background: transparent;
+  color: var(--black);
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 1.5px solid var(--border);
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
+.btn-ghost:hover { border-color: var(--black); }
+.btn-ghost svg { width: 16px; height: 16px; }
 
-/* ===== FOOTER ===== */
-footer {
+.hero-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+.hero-photo-wrap {
+  position: relative;
+  width: min(420px, 100%);
+}
+.hero-photo-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border: 1px solid var(--accent);
+  border-radius: 20px;
+  opacity: 0.4;
+  transform: rotate(2deg);
+}
+.hero-photo-wrap img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+.hero-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #e8e4dc 0%, #d4cfc6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--gray);
+  font-family: 'Space Mono', monospace;
   text-align: center;
-  padding: 40px;
-  color: #888;
+  padding: 20px;
+}
+.stat-row {
+  display: flex;
+  gap: 24px;
+  width: min(420px, 100%);
+}
+.stat {
+  flex: 1;
+  background: var(--light);
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+}
+.stat-number {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  color: var(--black);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--gray);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:900px){
-  .about { grid-template-columns:1fr; }
-  .hero h1 { font-size:2.6rem; }
+/* SECTION COMMON */
+section { padding: 100px 6%; }
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--accent);
+}
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 60px;
+}
+
+/* ABOUT */
+.about-bg { background: var(--light); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-body { color: #555; line-height: 1.9; font-size: 1.05rem; }
+.about-body p { margin-bottom: 20px; }
+.skills-wrap { margin-top: 36px; }
+.skills-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.skills { display: flex; gap: 10px; flex-wrap: wrap; }
+.skill {
+  border: 1px solid var(--border);
+  padding: 9px 18px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  background: var(--white);
+  transition: all 0.3s;
+  font-weight: 500;
+  cursor: default;
+}
+.skill:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+
+/* TIMELINE */
+.timeline { border-left: 1px solid var(--border); padding-left: 32px; }
+.timeline-item { position: relative; margin-bottom: 40px; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -38px; top: 6px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.timeline-year {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  margin-bottom: 6px;
+  letter-spacing: 0.1em;
+}
+.timeline-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+}
+.timeline-sub { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.card:hover::before { transform: scaleX(1); }
+.card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+.card-icon {
+  width: 44px; height: 44px;
+  background: var(--light);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+.card h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 10px; }
+.card p { color: #666; line-height: 1.7; font-size: 0.92rem; }
+.card-tag {
+  display: inline-block;
+  margin-top: 18px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* INSTAGRAM */
+.insta-section { background: var(--black); color: var(--white); }
+.insta-section .section-label { color: #c8a96e; }
+.insta-section .section-label::before { background: #c8a96e; }
+.insta-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.insta-text .section-title { color: var(--white); }
+.insta-desc { color: rgba(255,255,255,0.55); line-height: 1.8; margin-bottom: 32px; font-size: 1.05rem; }
+.insta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 40px;
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+.insta-btn:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+.insta-btn svg { width: 18px; height: 18px; }
+.insta-mockup {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 28px;
+}
+.insta-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.insta-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+.insta-handle { font-weight: 600; font-size: 0.95rem; color: var(--white); }
+.insta-sub { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.insta-cell { aspect-ratio: 1; border-radius: 4px; opacity: 0.6; }
+.insta-cell:nth-child(1) { background: linear-gradient(135deg, #667eea, #764ba2); }
+.insta-cell:nth-child(2) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.insta-cell:nth-child(3) { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.insta-cell:nth-child(4) { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+.insta-cell:nth-child(5) { background: linear-gradient(135deg, #fa709a, #fee140); }
+.insta-cell:nth-child(6) { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+
+/* CONTACT */
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.contact-body { color: #555; line-height: 1.8; font-size: 1.05rem; margin-bottom: 36px; }
+.contact-links { display: flex; flex-direction: column; gap: 16px; }
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--black);
+  font-weight: 500;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: all 0.3s;
+}
+.contact-link:hover { border-color: var(--black); background: var(--light); transform: translateX(4px); }
+.contact-link-icon {
+  width: 36px; height: 36px;
+  background: var(--light);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.contact-link-text { flex: 1; }
+.contact-link-label { font-size: 0.75rem; color: var(--gray); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+.contact-link-value { font-size: 0.95rem; }
+.big-quote {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  letter-spacing: -1px;
+  line-height: 1.2;
+  color: var(--black);
+}
+.big-quote em { font-style: italic; color: var(--accent); }
+
+/* FOOTER */
+footer {
+  padding: 40px 6%;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--gray);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-text > * { opacity: 0; animation: fadeUp 0.8s ease forwards; }
+.hero-eyebrow  { animation-delay: 0.1s; }
+.hero h1       { animation-delay: 0.25s; }
+.hero-desc     { animation-delay: 0.4s; }
+.hero-cta      { animation-delay: 0.55s; }
+.hero-visual   { opacity: 0; animation: fadeUp 0.9s 0.35s ease forwards; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding-top: 120px; }
+  .hero-visual { align-items: flex-start; }
+  .hero-photo-wrap, .stat-row { width: 100%; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .insta-inner { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; }
+  nav .nav-links { display: none; }
 }
 </style>
 </head>
-
 <body>
 
-<!-- 언어 버튼 -->
-<div class="lang-toggle">
-  <button id="langBtn" class="lang-btn" onclick="toggleLanguage()">EN</button>
-</div>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">YY</div>
+  <ul class="nav-links">
+    <li><a href="#about" data-i18n="navAbout">About</a></li>
+    <li><a href="#experience" data-i18n="navExp">Experience</a></li>
+    <li><a href="#instagram" data-i18n="navInsta">Instagram</a></li>
+    <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">EN</button>
+  </div>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow" data-i18n="heroEyebrow">Based in Korea</div>
+    <h1>Youngrok<br><em>Yoon.</em></h1>
+    <p class="hero-desc" data-i18n="heroDesc">
+      노력하는 사람. 단순히 만드는 것을 넘어 왜 이 구조가 필요한지 고민하고, 더 나은 경험을 설계합니다.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary" data-i18n="heroCta1">연락하기</a>
+      <a href="https://www.instagram.com/glaem_dns" target="_blank" class="btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+        @glaem_dns
+      </a>
+    </div>
+  </div>
 
-  <!-- 🔥 여기 사진 넣어 -->
-  <img src="여기에_너_사진_URL">
-
-  <h1>Youngrok Yoon</h1>
-
-  <p data-i18n="heroDesc">노력하는 사람.</p>
+  <div class="hero-visual">
+    <div class="hero-photo-wrap">
+      <!-- 사진 URL로 교체: <img src="YOUR_PHOTO_URL" alt="Youngrok Yoon"> -->
+      <div class="hero-photo-placeholder">📷<br><br>사진을 여기에<br>넣어주세요</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-number">84</div>
+        <div class="stat-label" data-i18n="statVol">봉사시간</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">2+</div>
+        <div class="stat-label" data-i18n="statWork">경력</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">2</div>
+        <div class="stat-label" data-i18n="statCert">자격증</div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ABOUT -->
-<section class="about">
-  <div>
-    <h2 data-i18n="aboutTitle">About Me</h2>
-  </div>
-
-  <div class="about-text">
-    <span data-i18n="aboutDesc">
-      단순히 만드는 것에 그치지 않고, 왜 이 구조가 필요한지 고민합니다.
-      사용자 흐름과 행동을 기반으로 더 나은 경험을 설계하며,
-      작지만 체감되는 차이를 만드는 것을 목표로 합니다.
-    </span>
-
-    <div class="skills">
-      <div class="skill">HTML/CSS</div>
-      <div class="skill">Python</div>
-      <div class="skill">WordPress</div>
-      <div class="skill">C</div>
+<section class="about-bg" id="about">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-label" data-i18n="aboutLabel">About</div>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title" data-i18n="aboutTitle">나를<br><em style="font-style:italic;color:var(--accent)">소개합니다.</em></h2>
+      </div>
+      <div>
+        <div class="about-body">
+          <p data-i18n="aboutP1">단순히 결과를 만드는 것에 그치지 않고, 왜 이 구조가 필요한지 끊임없이 고민합니다. 사용자 흐름과 행동을 기반으로 더 나은 경험을 설계하며, 작지만 체감되는 차이를 만드는 것을 목표로 합니다.</p>
+          <p data-i18n="aboutP2">현재 IT 분야에서 성장하며 HTML/CSS, Python, WordPress 등 다양한 기술을 익히고 있고, 서비스업 경험을 통해 사람과 소통하는 법도 배웠습니다.</p>
+        </div>
+        <div class="skills-wrap">
+          <div class="skills-label" data-i18n="skillsLabel">Tech Skills</div>
+          <div class="skills">
+            <div class="skill">HTML / CSS</div>
+            <div class="skill">Python</div>
+            <div class="skill">WordPress</div>
+            <div class="skill">C</div>
+            <div class="skill">Figma</div>
+            <div class="skill">Git</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECT -->
-<section>
-  <h2 style="margin-bottom:40px" data-i18n="projectTitle">Projects & Experience</h2>
+<!-- EXPERIENCE -->
+<section id="experience" style="max-width:1200px;margin:0 auto;padding-top:100px;padding-bottom:100px;padding-left:6%;padding-right:6%;">
+  <div class="section-label" data-i18n="expLabel">Experience</div>
+  <h2 class="section-title" data-i18n="expTitle">Projects &<br>Experience</h2>
 
-  <div class="projects">
-
-    <div class="card">
-      <h3 data-i18n="certTitle">Certifications</h3>
-      <p data-i18n="certDesc">바리스타 2급 / 지게차운전기능사</p>
+  <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;">
+    <div>
+      <div class="skills-label" style="margin-bottom:24px;" data-i18n="timelineLabel">History</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2024 — Present</div>
+          <div class="timeline-title" data-i18n="t1title">메가커피</div>
+          <div class="timeline-sub" data-i18n="t1sub">카운터 및 음료 제조 담당. 바리스타 2급 자격증 취득 후 현장 적용.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <div class="timeline-title" data-i18n="t2title">아웃백 스테이크하우스</div>
+          <div class="timeline-sub" data-i18n="t2sub">홀 서빙 및 고객 응대. 팀 커뮤니케이션과 서비스 마인드 함양.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022 — 2023</div>
+          <div class="timeline-title" data-i18n="t3title">봉사활동</div>
+          <div class="timeline-sub" data-i18n="t3sub">총 84시간 지역사회 봉사. 책임감과 협동심 습득.</div>
+        </div>
+      </div>
     </div>
 
-    <div class="card">
-      <h3 data-i18n="workTitle">Work Experience</h3>
-      <p data-i18n="workDesc">메가커피 / 아웃백</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">☕</div>
+        <h3 data-i18n="c1title">바리스타 2급</h3>
+        <p data-i18n="c1desc">한국직업능력개발원 공인 자격증. 커피 추출, 음료 조제, 위생관리 역량 보유.</p>
+        <span class="card-tag" data-i18n="c1tag">Certification</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏗️</div>
+        <h3 data-i18n="c2title">지게차운전기능사</h3>
+        <p data-i18n="c2desc">산업안전 및 물류 현장 운용 역량. 국가기술자격 취득.</p>
+        <span class="card-tag" data-i18n="c2tag">Certification</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <h3 data-i18n="c3title">포트폴리오 웹사이트</h3>
+        <p data-i18n="c3desc">HTML/CSS/JS로 직접 제작한 개인 포트폴리오. 반응형 디자인 및 다국어 지원 구현.</p>
+        <span class="card-tag" data-i18n="c3tag">Project</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h3 data-i18n="c4title">봉사 84h</h3>
+        <p data-i18n="c4desc">지역 커뮤니티 기여. 꾸준한 참여를 통해 책임감과 협력하는 태도를 길렀습니다.</p>
+        <span class="card-tag" data-i18n="c4tag">Community</span>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="card">
-      <h3 data-i18n="volTitle">Volunteer</h3>
-      <p data-i18n="volDesc">84 hours</p>
+<!-- INSTAGRAM -->
+<section class="insta-section" id="instagram">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="insta-inner">
+      <div class="insta-text">
+        <div class="section-label" data-i18n="instaLabel">Social</div>
+        <h2 class="section-title" data-i18n="instaTitle">일상을<br>인스타그램에서</h2>
+        <p class="insta-desc" data-i18n="instaDesc">
+          카페, 일상, 그리고 작은 순간들. 인스타그램에서 더 많은 이야기를 만나보세요.
+        </p>
+        <a href="https://www.instagram.com/glaem_dns" target="_blank" class="insta-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          @glaem_dns 팔로우
+        </a>
+      </div>
+      <div class="insta-mockup">
+        <div class="insta-profile">
+          <div class="insta-avatar">🌿</div>
+          <div>
+            <div class="insta-handle">@glaem_dns</div>
+            <div class="insta-sub">Youngrok Yoon</div>
+          </div>
+        </div>
+        <div class="insta-grid">
+          <div class="insta-cell"></div>
+          <div class="insta-cell"></div>
+          <div class="insta-cell"></div>
+          <div class="insta-cell"></div>
+          <div class="insta-cell"></div>
+          <div class="insta-cell"></div>
+        </div>
+      </div>
     </div>
-
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="contact">
-  <h2 data-i18n="contactTitle">Contact</h2>
-  <p style="color:#666">yooungrok@icloud.com</p>
-  <a href="#" class="btn" data-i18n="contactBtn">Get In Touch</a>
+<section id="contact">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-label" data-i18n="contactLabel">Contact</div>
+    <div class="contact-inner">
+      <div>
+        <blockquote class="big-quote" data-i18n="contactQuote">
+          "함께 만들어갈<br><em>무언가가</em><br>있다면."
+        </blockquote>
+      </div>
+      <div>
+        <p class="contact-body" data-i18n="contactBody">
+          협업이나 이야기 나누고 싶은 것이 있으시면 편하게 연락주세요. 메일이나 인스타그램으로 언제든지 환영합니다.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:yooungrok@icloud.com" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            <div class="contact-link-text">
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-value">yooungrok@icloud.com</div>
+            </div>
+            <span>→</span>
+          </a>
+          <a href="https://www.instagram.com/glaem_dns" target="_blank" class="contact-link">
+            <div class="contact-link-icon">📸</div>
+            <div class="contact-link-text">
+              <div class="contact-link-label">Instagram</div>
+              <div class="contact-link-value">@glaem_dns</div>
+            </div>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer data-i18n="footerText">
-  © 2026 Youngrok Yoon
+<!-- FOOTER -->
+<footer>
+  <span data-i18n="footerText">© 2026 Youngrok Yoon. All rights reserved.</span>
+  <a href="#" style="color:var(--gray);text-decoration:none;font-size:0.8rem;" data-i18n="footerTop">↑ Top</a>
 </footer>
 
 <script>
 const translations = {
-  ko:{
-    heroDesc:"노력하는 사람.",
-    aboutTitle:"About Me",
-    aboutDesc:"단순히 만드는 것에 그치지 않고 구조를 고민하며 더 나은 경험을 만듭니다.",
-    projectTitle:"Projects & Experience",
-    certTitle:"자격증",
-    certDesc:"바리스타 2급 / 지게차운전기능사",
-    workTitle:"근무 경험",
-    workDesc:"메가커피 / 아웃백",
-    volTitle:"봉사활동",
-    volDesc:"총 84시간",
-    contactTitle:"Contact",
-    contactBtn:"연락하기",
-    footerText:"© 2026 Youngrok Yoon"
+  ko: {
+    navAbout:"About", navExp:"Experience", navInsta:"Instagram", navContact:"Contact",
+    heroEyebrow:"한국에서 활동 중",
+    heroDesc:"노력하는 사람. 단순히 만드는 것을 넘어 왜 이 구조가 필요한지 고민하고, 더 나은 경험을 설계합니다.",
+    heroCta1:"연락하기",
+    statVol:"봉사시간", statWork:"근무경험", statCert:"자격증",
+    aboutLabel:"About", aboutTitle:"나를\n소개합니다.",
+    aboutP1:"단순히 결과를 만드는 것에 그치지 않고, 왜 이 구조가 필요한지 끊임없이 고민합니다. 사용자 흐름과 행동을 기반으로 더 나은 경험을 설계하며, 작지만 체감되는 차이를 만드는 것을 목표로 합니다.",
+    aboutP2:"현재 IT 분야에서 성장하며 HTML/CSS, Python, WordPress 등 다양한 기술을 익히고 있고, 서비스업 경험을 통해 사람과 소통하는 법도 배웠습니다.",
+    skillsLabel:"기술 스택",
+    expLabel:"경험", expTitle:"Projects &\nExperience", timelineLabel:"연혁",
+    t1title:"메가커피", t1sub:"카운터 및 음료 제조 담당. 바리스타 2급 자격증 취득 후 현장 적용.",
+    t2title:"아웃백 스테이크하우스", t2sub:"홀 서빙 및 고객 응대. 팀 커뮤니케이션과 서비스 마인드 함양.",
+    t3title:"봉사활동", t3sub:"총 84시간 지역사회 봉사. 책임감과 협동심 습득.",
+    c1title:"바리스타 2급", c1desc:"한국직업능력개발원 공인 자격증. 커피 추출, 음료 조제, 위생관리 역량 보유.", c1tag:"Certification",
+    c2title:"지게차운전기능사", c2desc:"산업안전 및 물류 현장 운용 역량. 국가기술자격 취득.", c2tag:"Certification",
+    c3title:"포트폴리오 웹사이트", c3desc:"HTML/CSS/JS로 직접 제작한 개인 포트폴리오. 반응형 디자인 및 다국어 지원 구현.", c3tag:"Project",
+    c4title:"봉사 84h", c4desc:"지역 커뮤니티 기여. 꾸준한 참여를 통해 책임감과 협력하는 태도를 길렀습니다.", c4tag:"Community",
+    instaLabel:"소셜", instaTitle:"일상을\n인스타그램에서",
+    instaDesc:"카페, 일상, 그리고 작은 순간들. 인스타그램에서 더 많은 이야기를 만나보세요.",
+    contactLabel:"연락", contactQuote:'"함께 만들어갈\n무언가가\n있다면."',
+    contactBody:"협업이나 이야기 나누고 싶은 것이 있으시면 편하게 연락주세요. 메일이나 인스타그램으로 언제든지 환영합니다.",
+    footerText:"© 2026 Youngrok Yoon. All rights reserved.", footerTop:"↑ 맨 위로"
   },
-  en:{
-    heroDesc:"A person who constantly improves.",
-    aboutTitle:"About Me",
-    aboutDesc:"I focus on structure and improving user experience.",
-    projectTitle:"Projects & Experience",
-    certTitle:"Certifications",
-    certDesc:"Barista Level 2 / Forklift",
-    workTitle:"Work Experience",
-    workDesc:"Mega Coffee / Outback",
-    volTitle:"Volunteer",
-    volDesc:"84 hours",
-    contactTitle:"Contact",
-    contactBtn:"Back to Top",
-    footerText:"© 2026 Youngrok Yoon"
+  en: {
+    navAbout:"About", navExp:"Experience", navInsta:"Instagram", navContact:"Contact",
+    heroEyebrow:"Based in Korea",
+    heroDesc:"A person who constantly improves. I think beyond just building things — designing better experiences with purpose and structure.",
+    heroCta1:"Get in Touch",
+    statVol:"Volunteer Hrs", statWork:"Work Exp.", statCert:"Certs",
+    aboutLabel:"About", aboutTitle:"Let me\nintroduce myself.",
+    aboutP1:"I don't just create results — I constantly ask why a structure is needed. I design better experiences based on user flows and behavior, aiming to make small but meaningful differences.",
+    aboutP2:"I'm growing in the IT field, learning HTML/CSS, Python, WordPress, and more. Service industry experience has also taught me how to communicate and empathize with people.",
+    skillsLabel:"Tech Skills",
+    expLabel:"Experience", expTitle:"Projects &\nExperience", timelineLabel:"Timeline",
+    t1title:"Mega Coffee", t1sub:"Counter & beverage preparation. Applied barista skills after obtaining Level 2 certification.",
+    t2title:"Outback Steakhouse", t2sub:"Floor service & customer support. Developed team communication and service mindset.",
+    t3title:"Volunteer Work", t3sub:"84 hours of community service. Built accountability and teamwork.",
+    c1title:"Barista Level 2", c1desc:"Nationally certified. Skilled in espresso extraction, beverage preparation, and hygiene management.", c1tag:"Certification",
+    c2title:"Forklift License", c2desc:"National technical qualification for industrial safety and logistics operations.", c2tag:"Certification",
+    c3title:"Portfolio Website", c3desc:"Built with HTML/CSS/JS from scratch. Responsive design with bilingual support.", c3tag:"Project",
+    c4title:"84h Volunteer", c4desc:"Community contribution. Developed responsibility and cooperative attitude through consistent participation.", c4tag:"Community",
+    instaLabel:"Social", instaTitle:"Daily life on\nInstagram",
+    instaDesc:"Cafés, everyday moments, and small stories. Find more on Instagram.",
+    contactLabel:"Contact", contactQuote:'"If there\'s something\nwe could\nbuild together."',
+    contactBody:"Feel free to reach out for collaborations or just a conversation. Email or Instagram — both are always open.",
+    footerText:"© 2026 Youngrok Yoon. All rights reserved.", footerTop:"↑ Back to Top"
   }
 };
 
 let currentLang = navigator.language.startsWith('ko') ? 'ko' : 'en';
 
-function updateText(){
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
+function updateText() {
+  const t = translations[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    el.textContent = translations[currentLang][key];
+    if (t[key] !== undefined) el.textContent = t[key];
   });
-
-  document.getElementById('langBtn').textContent =
-    currentLang === 'ko' ? 'EN' : 'KR';
+  document.getElementById('langBtn').textContent = currentLang === 'ko' ? 'EN' : 'KR';
 }
 
-function toggleLanguage(){
+function toggleLanguage() {
   currentLang = currentLang === 'ko' ? 'en' : 'ko';
   updateText();
 }
 
 window.onload = updateText;
 </script>
-
 </body>
 </html>
